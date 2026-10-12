@@ -1,0 +1,49 @@
+[package]
+name = "vrmanager"
+version = "0.1.0"
+description = "VRManager — Universal VR App & Device Manager"
+authors = ["VRManager"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "vrmanager_lib"
+path = "src/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "vrmanager"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = [
+    "process",
+    "time",
+    "sync",
+    "rt-multi-thread",
+    "macros",
+    "io-util",
+    "fs",
+] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+dirs = "6"
+
+[features]
+# Required for a standalone embedded production build (`tauri build`).
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

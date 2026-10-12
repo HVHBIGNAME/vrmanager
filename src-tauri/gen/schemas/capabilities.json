@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"VRManager desktop capabilities: windowing, dialogs for APK picking, and the core invoke surface.","local":true,"windows":["main"],"permissions":["core:default","core:window:allow-start-dragging","core:window:allow-minimize","core:window:allow-toggle-maximize","core:window:allow-close","core:event:default","dialog:allow-open"]}}
